@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LoginView</string>
+    <string name="button_submit">Submit</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login_successful">Login successful</string>
+    <string name="login_failed">Login failed</string>
+</resources>
