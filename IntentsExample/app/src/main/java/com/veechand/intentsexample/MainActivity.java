@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button callButton;
     EditText phoneNumberEditText;
     Button localCallButton;
+    Button resultButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         callButton = (Button) findViewById(R.id.buttonCall);
         phoneNumberEditText = (EditText) findViewById(R.id.editTextPhoneNumber);
         localCallButton = (Button) findViewById(R.id.buttonLocalCall);
+        resultButton = (Button) findViewById(R.id.buttonResultButton);
 
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,10 +55,41 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String phoneNumber = String.valueOf(phoneNumberEditText.getText());
                 Intent explicitIntent = new Intent(MainActivity.this,ExplicitIntent.class);
-                explicitIntent.putExtra("phonenumber",phoneNumber);
+                explicitIntent.putExtra("phonenumber", phoneNumber);
                 startActivity(explicitIntent);
             }
         });
+
+        resultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = String.valueOf(phoneNumberEditText.getText());
+                Intent explicitIntent = new Intent(MainActivity.this,ExplicitIntent.class);
+                explicitIntent.putExtra("phonenumber", phoneNumber);
+                int requestCode = getResources().getInteger(R.integer.request_code_1);
+                startActivityForResult(explicitIntent,requestCode);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        int _requestCode = getResources().getInteger(R.integer.request_code_1);
+
+        if (requestCode == _requestCode && resultCode == RESULT_OK){
+            String updatedPhoneNumber = data.getStringExtra(getResources().getString(R.string.updated_phone_number));
+            Toast.makeText(MainActivity.this, updatedPhoneNumber, Toast.LENGTH_LONG).show();
+        }
+
+        if (requestCode == _requestCode && resultCode == RESULT_CANCELED){
+            Toast.makeText(MainActivity.this, "Operation cancelled", Toast.LENGTH_LONG).show();
+        }
+
+        if (requestCode == _requestCode && resultCode == RESULT_FIRST_USER){
+            Toast.makeText(MainActivity.this, "Some notorious happened !!", Toast.LENGTH_LONG).show();
+        }
 
     }
 }

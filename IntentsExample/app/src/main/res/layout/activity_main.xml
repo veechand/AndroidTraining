@@ -33,8 +33,17 @@
         android:layout_height="wrap_content"
         android:text="LocalCall"
         android:id="@+id/buttonLocalCall"
+        android:layout_marginTop="34dp"
         android:layout_below="@+id/buttonCall"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Result"
+        android:id="@+id/buttonResultButton"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/buttonLocalCall"
+        android:layout_alignStart="@+id/buttonLocalCall" />
 
 </RelativeLayout>

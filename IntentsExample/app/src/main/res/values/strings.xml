@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">IntentsExample</string>
+    <integer name="request_code_1">1</integer>
+    <string name="updated_phone_number">updatedphonenumber</string>
 </resources>
