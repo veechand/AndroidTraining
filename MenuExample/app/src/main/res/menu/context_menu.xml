@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/image_1"
+        android:title="@string/Image1"
+        android:icon="@drawable/a1"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/image_2"
+        android:title="@string/Image2"
+        android:icon="@drawable/a2"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/image_3"
+        android:title="@string/Image3"
+        android:icon="@drawable/a3"
+        app:showAsAction="always"
+        />
+</menu>

@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.veechand.menuexample.MainActivity">
+    <item
+        android:id="@+id/menu_black"
+        android:orderInCategory="100"
+        android:title="@string/black"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_green"
+        android:orderInCategory="100"
+        android:title="@string/green"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_red"
+        android:orderInCategory="100"
+        android:title="@string/red"
+        app:showAsAction="ifRoom" />
+</menu>
