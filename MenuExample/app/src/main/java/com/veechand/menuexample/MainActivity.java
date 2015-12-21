@@ -1,11 +1,13 @@
 package com.veechand.menuexample;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.View;
@@ -24,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+            Log.d("Version tag", "Gingerbeard version");
+        }
         parentLayout = (RelativeLayout) findViewById(R.id.layoutParent);
         imageView = (ImageView) findViewById(R.id.imageView);
         registerForContextMenu(imageView);
