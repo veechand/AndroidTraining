@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DialogExample</string>
+    <string-array name="company_name">
+        <item>Google</item>
+        <item>Uber</item>
+        <item>Square</item>
+    </string-array>
+</resources>
