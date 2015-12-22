@@ -63,17 +63,16 @@
         android:layout_height="wrap_content"
         android:text="DB Store"
         android:id="@+id/buttonStore"
-        android:layout_below="@+id/buttonPreferencesStore"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="77dp" />
+        android:layout_below="@+id/buttonRead"
+        android:layout_alignParentLeft="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DB Delete"
         android:id="@+id/buttonDelete"
-        android:layout_alignTop="@+id/buttonStore"
+        android:layout_above="@+id/buttonStore"
         android:layout_toRightOf="@+id/buttonStore"
         android:layout_toEndOf="@+id/buttonStore" />
 
@@ -91,7 +90,17 @@
         android:layout_height="wrap_content"
         android:text="DBRead"
         android:id="@+id/buttonRead"
-        android:layout_below="@+id/buttonStore"
+        android:layout_below="@+id/buttonPreferencesStore"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List Items"
+        android:id="@+id/buttonListItem"
+        android:layout_alignTop="@+id/buttonStore"
+        android:layout_toRightOf="@+id/buttonFileStore"
+        android:layout_toEndOf="@+id/buttonFileStore" />
 </RelativeLayout>

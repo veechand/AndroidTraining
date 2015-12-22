@@ -1,5 +1,6 @@
 package com.veechand.storageexample;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonRead;
     Button buttonDelete;
     Button buttonUpdate;
+    Button buttonListItem;
 
     EditText textValue;
     SharedPreferences pref;
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonRead = (Button) findViewById(R.id.buttonRead);
         buttonDelete = (Button) findViewById(R.id.buttonDelete);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+        buttonListItem = (Button) findViewById(R.id.buttonListItem);
 
         textValue = (EditText) findViewById(R.id.editText);
         pref = getSharedPreferences("sharedlinkedin", MODE_PRIVATE);
@@ -72,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonRead.setOnClickListener(this);
         buttonDelete.setOnClickListener(this);
         buttonUpdate.setOnClickListener(this);
+        buttonListItem.setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +176,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonUpdate:
                 dbHelper.updateDB(name,phoneNumber);
+                break;
+            case R.id.buttonListItem:
+                Intent intent = new Intent(MainActivity.this,ListActivity.class);
+                startActivity(intent);
                 break;
         }
     }
