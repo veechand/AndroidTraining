@@ -41,4 +41,7 @@ public class BottomFragment extends Fragment {
         });
 
     }
+    public void setTitle(String title){
+        bottomButton.setText(title);
+    }
 }

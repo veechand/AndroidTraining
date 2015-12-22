@@ -6,13 +6,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements TopFragmentMessagePasser{
+    FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         transaction.add(R.id.topFragment,new TopFragment());
@@ -20,5 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
         transaction.commit();
 
+    }
+
+    @Override
+    public void setTitle(String title) {
+        BottomFragment bottomFragment = (BottomFragment) fragmentManager.findFragmentById(R.id.bottomFragment);
+        bottomFragment.setTitle(title);
     }
 }
