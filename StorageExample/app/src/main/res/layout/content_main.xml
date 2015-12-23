@@ -103,4 +103,13 @@
         android:layout_alignTop="@+id/buttonStore"
         android:layout_toRightOf="@+id/buttonFileStore"
         android:layout_toEndOf="@+id/buttonFileStore" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RecycleView"
+        android:id="@+id/buttonRecycleView"
+        android:layout_alignTop="@+id/buttonListItem"
+        android:layout_toRightOf="@+id/buttonListItem"
+        android:layout_toEndOf="@+id/buttonListItem" />
 </RelativeLayout>

@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonDelete;
     Button buttonUpdate;
     Button buttonListItem;
+    Button buttonRecycleView;
 
     EditText textValue;
     SharedPreferences pref;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonDelete = (Button) findViewById(R.id.buttonDelete);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
         buttonListItem = (Button) findViewById(R.id.buttonListItem);
+        buttonRecycleView = (Button) findViewById(R.id.buttonRecycleView);
 
         textValue = (EditText) findViewById(R.id.editText);
         pref = getSharedPreferences("sharedlinkedin", MODE_PRIVATE);
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonDelete.setOnClickListener(this);
         buttonUpdate.setOnClickListener(this);
         buttonListItem.setOnClickListener(this);
+        buttonRecycleView.setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -181,6 +184,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(MainActivity.this,ListActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.buttonRecycleView:
+                Intent recycle_intent = new Intent(MainActivity.this,RecyclerActivity.class);
+                startActivity(recycle_intent);
+                break;
+
         }
     }
 }
