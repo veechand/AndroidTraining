@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by vsubrama on 12/22/15.
  */
-public class DBHelper {
+public class DBHelper  {
     MySQLiteOpenHelper mySQLiteOpenHelper;
     public DBHelper(Context context){
         mySQLiteOpenHelper = new MySQLiteOpenHelper(context, "linkedin.db", null, 1);
