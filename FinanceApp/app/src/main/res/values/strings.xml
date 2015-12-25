@@ -13,6 +13,7 @@
     <!--<string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>-->
+
     <!-- DB releated constants - STARTS -->
     <string name="db_name">financeapp.db</string>
     <integer name="income_true">1</integer>
@@ -21,5 +22,18 @@
     <string name="sub_type_col_sub_type_name">sub_type_name</string>
     <string name="sub_type_col_is_income">is_income</string>
     <string name="sub_type_col_id">_id</string>
+    <string name="finance_app_tag">FinanceApp</string>
     <!-- DB releated constants - ENDS -->
+
+    <string name="error_no_sub_type_selected">Select transaction type (income/expense)</string>
+    <string name="error_no_amount_given">Invalid transaction amount</string>
+    <string name="finance_transaction_table_name">finance_transaction</string>
+    <string name="finance_transaction_col_is_income">is_income</string>
+    <string name="finance_transaction_col_user_id">user_id</string>
+    <string name="finance_transaction_col_sub_type_id">sub_type_id</string>
+    <string name="finance_transaction_col_amount">amount</string>
+    <string name="finance_transaction_update_successful">Transaction updated succesfully !!</string>
+    <string name="finance_transaction_update_failed">Error in updating the transaction :(</string>
+    <string name="error_sub_type_not_found">Selected sub type not valid</string>
+
 </resources>

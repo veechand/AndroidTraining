@@ -7,23 +7,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.veechand.financeapp.db.DBHelper;
+import com.veechand.financeapp.db.FinanceTransaction;
 
 public class AddTransactionActivity extends AppCompatActivity implements View.OnClickListener {
 
-    RadioButton incomeRadioButton;
-    RadioButton expenseRadioButton;
-    EditText amountEditText;
-    Spinner transactionTypeSpinner;
-    Button addButton;
+    private RadioButton incomeRadioButton;
+    private RadioButton expenseRadioButton;
+    private EditText amountEditText;
+    private Spinner transactionTypeSpinner;
+    private Button addButton;
+    private RadioGroup sub_type_radio_group;
 
-    DBHelper dbHelper = null;
+
+    private DBHelper dbHelper = null;
+
+    private String logTag;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +41,14 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         amountEditText = (EditText) findViewById(R.id.amountEditText);
         transactionTypeSpinner = (Spinner) findViewById(R.id.transactionTypeSpinner);
         addButton = (Button) findViewById(R.id.addButton);
+        sub_type_radio_group = (RadioGroup) findViewById(R.id.sub_type_radio_group);
+
+        this.logTag = getResources().getString(R.string.finance_app_tag);
+
 
         incomeRadioButton.setOnClickListener(this);
         expenseRadioButton.setOnClickListener(this);
-
+        addButton.setOnClickListener(this);
 
         dbHelper = new DBHelper(AddTransactionActivity.this);
     }
@@ -51,6 +61,39 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
                 break;
             case R.id.expenseRadioButton:
                 populateTransactionSubType(R.integer.income_false);
+                break;
+            case R.id.addButton:
+                int checkedRadioButtonId = sub_type_radio_group.getCheckedRadioButtonId();
+                String amount = amountEditText.getText().toString();
+                if (checkedRadioButtonId == -1){
+                    Toast.makeText(AddTransactionActivity.this,R.string.error_no_sub_type_selected,Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (amount.isEmpty() || Double.valueOf(amount).intValue() <= 0 ){
+                    Toast.makeText(AddTransactionActivity.this,R.string.error_no_amount_given,Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Cursor selectedCursor = (Cursor) transactionTypeSpinner.getSelectedItem();
+                String selectedItem = selectedCursor.getString(selectedCursor.getColumnIndex(getResources().getString(R.string.sub_type_col_sub_type_name)));
+
+                Log.i(logTag, String.valueOf(checkedRadioButtonId));
+                Log.i(logTag, String.valueOf(R.id.incomeRadioButton));
+                Log.i(logTag, amount);
+                Log.i(logTag, selectedItem);
+                int isIncome = (checkedRadioButtonId == R.id.incomeRadioButton)?getResources().getInteger(R.integer.income_true):
+                        getResources().getInteger(R.integer.income_false);
+                long transactionSubTypeId = dbHelper.getTransactionSubTypeID(selectedItem,isIncome);
+                if (transactionSubTypeId == -1){
+                    Toast.makeText(AddTransactionActivity.this,R.string.error_sub_type_not_found,Toast.LENGTH_LONG).show();
+                }
+                //TODO(veechand): Update the userID with the loggedin user
+                long userID = 1;
+                long insertionResult = dbHelper.insertNewTransaction(new FinanceTransaction(amount, transactionSubTypeId, userID, isIncome));
+                if (insertionResult == -1){
+                    Toast.makeText(AddTransactionActivity.this,R.string.finance_transaction_update_failed,Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(AddTransactionActivity.this,R.string.finance_transaction_update_successful,Toast.LENGTH_LONG).show();
+                }
                 break;
 
 
@@ -73,6 +116,7 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
                 AddTransactionActivity.this, android.R.layout.simple_spinner_item, allTransactionSubtypeCursor, from, to, 0);
         transactionTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         transactionTypeSpinner.setAdapter(transactionTypeSpinnerAdapter);
+        //allTransactionSubtypeCursor.close();
     }
 }
 
