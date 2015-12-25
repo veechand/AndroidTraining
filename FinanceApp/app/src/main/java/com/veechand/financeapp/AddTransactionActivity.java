@@ -122,8 +122,9 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
 
 /*
 TODO:
-  1. Write the com.veechand.financeapp.com.veechand.finance.model.DBHelper
-  2. Populate the TransactionSubType combo - Done
-  3. On Click validate and add it to DB
+  1. Showing transaction on recycler card view
+  2. Changing the view. Always show the transaction and the master detail view to select action
+  2. Add user to the sub transaction type table
   4. Register User and add it to DB
+
  */

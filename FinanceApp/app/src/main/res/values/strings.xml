@@ -35,5 +35,9 @@
     <string name="finance_transaction_update_successful">Transaction updated succesfully !!</string>
     <string name="finance_transaction_update_failed">Error in updating the transaction :(</string>
     <string name="error_sub_type_not_found">Selected sub type not valid</string>
+    <string name="error_no_sub_type_name">No subtype name entered</string>
+    <string name="error_sub_type_add_failure">Error in updating transaction subtype:(</string>
+    <string name="error_sub_type_add_success">Added new transaction subtype</string>
+    <string name="transaction_subtype_add">Add</string>
 
 </resources>

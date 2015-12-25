@@ -71,8 +71,8 @@ public class DBHelper  {
         //String[] selectionArgs = new String[]{transaction_sub_type,String.valueOf(isIncome)};
         String[] selectionArgs = new String[]{transaction_sub_type};
         Cursor resultCursor = rDb.query(tableName, columns, selection, selectionArgs, null, null, null);
-        Log.i(logTag, "Number of query results"+String.valueOf(resultCursor.getCount()));
-        Log.i(logTag,"Columns[0] "+columns[0]);
+        Log.i(logTag, "Number of query results" + String.valueOf(resultCursor.getCount()));
+        Log.i(logTag, "Columns[0] " + columns[0]);
         //TODO:vsubrama while updating check there is only one sub type
         long transactionSubTypeID = -1;
         if( resultCursor != null && resultCursor.moveToFirst() ) {
@@ -82,6 +82,21 @@ public class DBHelper  {
         }
         resultCursor.close();
         return transactionSubTypeID;
+    }
+
+    public long insertNewSubType(String subTypeName, int isIncome, long userID) {
+        SQLiteDatabase wDb = sqlHelper.getWritableDatabase();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            wDb.setForeignKeyConstraintsEnabled(true);
+        }
+        String tableName = context.getResources().getString(R.string.sub_type_table_name);
+        ContentValues cv = new ContentValues();
+        cv.put(context.getResources().getString(R.string.sub_type_col_sub_type_name),subTypeName);
+        cv.put(context.getResources().getString(R.string.sub_type_col_is_income),isIncome);
+        //cv.put(context.getResources().getString(R.string.sub_type_user_id),userID);
+        long l = wDb.insert(tableName, null, cv);
+        wDb.close();
+        return l;
     }
 
     class SQLiteHelper extends SQLiteOpenHelper {

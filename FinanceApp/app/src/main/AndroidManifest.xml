@@ -24,7 +24,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActionChooserActivity" />
-        <activity android:name=".AddTransactionActivity"></activity>
+        <activity
+            android:name=".AddTransactionActivity"
+            android:parentActivityName=".ActionChooserActivity" />
+        <activity
+            android:name=".TransactionSubTypeAdd"
+            android:parentActivityName=".ActionChooserActivity"></activity>
     </application>
 
 </manifest>
