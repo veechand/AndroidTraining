@@ -1,5 +1,6 @@
 package com.veechand.financeapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +30,8 @@ public class ActionChooserActivity extends AppCompatActivity implements View.OnC
             case R.id.viewTransactionButton:
                 break;
             case R.id.addTransactionButton:
-                
+                Intent add_transaction_intent = new Intent(ActionChooserActivity.this,AddTransactionActivity.class);
+                startActivity(add_transaction_intent);
                 break;
         }
     }

@@ -10,7 +10,16 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
+    <!--<string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
-    </string>
+    </string>-->
+    <!-- DB releated constants - STARTS -->
+    <string name="db_name">financeapp.db</string>
+    <integer name="income_true">1</integer>
+    <integer name="income_false">0</integer>
+    <string name="sub_type_table_name">sub_type</string>
+    <string name="sub_type_col_sub_type_name">sub_type_name</string>
+    <string name="sub_type_col_is_income">is_income</string>
+    <string name="sub_type_col_id">_id</string>
+    <!-- DB releated constants - ENDS -->
 </resources>
