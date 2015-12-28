@@ -13,6 +13,7 @@ public class FinanceTransaction {
     private long transactionSubTypeId;
     private long userId;
     private int isIncome;
+    private String transactionSubType;
 
     public FinanceTransaction(String amount, long transactionSubTypeId, long userId, int isIncome) {
         this.amount = amount;
@@ -51,6 +52,15 @@ public class FinanceTransaction {
 
     public void setIsIncome(int isIncome) {
         this.isIncome = isIncome;
+    }
+
+
+    public String getTransactionSubType() {
+        return transactionSubType;
+    }
+
+    public void setTransactionSubType(String transactionSubType) {
+        this.transactionSubType = transactionSubType;
     }
 
 

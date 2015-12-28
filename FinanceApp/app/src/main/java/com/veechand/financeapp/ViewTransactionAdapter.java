@@ -50,11 +50,10 @@ class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter.Transa
     public void onBindViewHolder(TransactionAdapter.TransactionViewHolder holder, int position) {
         FinanceTransaction financeTransaction = (FinanceTransaction) myDataset.get(position);
         int isIncome = financeTransaction.getIsIncome();
+        holder.amountDescription.setText(financeTransaction.getTransactionSubType());
         if (isIncome == this.isIncome) {
-            holder.amountDescription.setText("Income");
             holder.amountDescription.setTextColor(Color.GREEN);
         } else {
-            holder.amountDescription.setText("Expense");
             holder.amountDescription.setTextColor(Color.MAGENTA);
         }
         holder.amount.setText(financeTransaction.getAmount());

@@ -11,7 +11,9 @@ import android.util.Log;
 import com.veechand.financeapp.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by vsubrama on 12/24/15.
@@ -39,8 +41,16 @@ public class DBHelper  {
                 context.getResources().getString(R.string.sub_type_col_id),
                 context.getResources().getString(R.string.sub_type_col_sub_type_name),
         };
-        String selection = context.getResources().getString(R.string.sub_type_col_is_income) + "= ?";
-        String[] selectionArgs = new String[]{String.valueOf(isIncome)};
+
+        String selection;
+        String[] selectionArgs;
+        if (isIncome != -1) {
+            selection = context.getResources().getString(R.string.sub_type_col_is_income) + "= ?";
+            selectionArgs = new String[]{String.valueOf(isIncome)};
+        } else {
+            selection = null;
+            selectionArgs = null;
+        }
         Cursor resultCursor = rDb.query(tableName, columns, selection, selectionArgs, null, null, null);
         return resultCursor;
     }
@@ -105,14 +115,24 @@ public class DBHelper  {
     public List<FinanceTransaction> getAllTransactions() {
 
         List<FinanceTransaction> allTransactions = new ArrayList<FinanceTransaction>();
+        Map<Integer,String> subTypeMapping = new HashMap<Integer,String>();
         SQLiteDatabase rDb = sqlHelper.getReadableDatabase();
+
+        Cursor allTransactionSubTypes = getAllTransactionSubTypes(-1);
+        while(allTransactionSubTypes != null && allTransactionSubTypes.moveToNext()){
+            int id = allTransactionSubTypes.getInt(allTransactionSubTypes.getColumnIndex(context.getResources().getString(R.string.sub_type_col_id)));
+            String name = allTransactionSubTypes.getString(allTransactionSubTypes.getColumnIndex(context.getResources().getString(R.string.sub_type_col_sub_type_name)));
+            subTypeMapping.put(id,name);
+        }
         Cursor result = rDb.query(context.getResources().getString(R.string.finance_transaction_table_name), null, null, null, null, null, null);
         while (result != null && result.moveToNext()){
             String amount = result.getString(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_amount)));
             int isIncome = result.getInt(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_is_income)));
             long userId = result.getLong(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_user_id)));
             long transactionSubtypeID = result.getLong(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_sub_type_id)));
-            allTransactions.add(new FinanceTransaction(amount,transactionSubtypeID,userId,isIncome));
+            FinanceTransaction financeTransaction = new FinanceTransaction(amount, transactionSubtypeID, userId, isIncome);
+            financeTransaction.setTransactionSubType(subTypeMapping.get((int)transactionSubtypeID));
+            allTransactions.add(financeTransaction);
         }
         result.close();
         return allTransactions;
