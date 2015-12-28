@@ -29,10 +29,12 @@ public class ActionChooserActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.viewTransactionButton:
+                Intent viewTransaction = new Intent(ActionChooserActivity.this,ViewTransactionActivity.class);
+                startActivity(viewTransaction);
                 break;
             case R.id.addTransactionButton:
-                Intent add_transaction_intent = new Intent(ActionChooserActivity.this,AddTransactionActivity.class);
-                startActivity(add_transaction_intent);
+                Intent addTransactionIntent = new Intent(ActionChooserActivity.this,AddTransactionActivity.class);
+                startActivity(addTransactionIntent);
                 break;
         }
     }

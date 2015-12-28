@@ -10,6 +10,9 @@ import android.util.Log;
 
 import com.veechand.financeapp.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by vsubrama on 12/24/15.
  */
@@ -91,12 +94,29 @@ public class DBHelper  {
         }
         String tableName = context.getResources().getString(R.string.sub_type_table_name);
         ContentValues cv = new ContentValues();
-        cv.put(context.getResources().getString(R.string.sub_type_col_sub_type_name),subTypeName);
-        cv.put(context.getResources().getString(R.string.sub_type_col_is_income),isIncome);
+        cv.put(context.getResources().getString(R.string.sub_type_col_sub_type_name), subTypeName);
+        cv.put(context.getResources().getString(R.string.sub_type_col_is_income), isIncome);
         //cv.put(context.getResources().getString(R.string.sub_type_user_id),userID);
         long l = wDb.insert(tableName, null, cv);
         wDb.close();
         return l;
+    }
+
+    public List<FinanceTransaction> getAllTransactions() {
+
+        List<FinanceTransaction> allTransactions = new ArrayList<FinanceTransaction>();
+        SQLiteDatabase rDb = sqlHelper.getReadableDatabase();
+        Cursor result = rDb.query(context.getResources().getString(R.string.finance_transaction_table_name), null, null, null, null, null, null);
+        while (result != null && result.moveToNext()){
+            String amount = result.getString(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_amount)));
+            int isIncome = result.getInt(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_is_income)));
+            long userId = result.getLong(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_user_id)));
+            long transactionSubtypeID = result.getLong(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_sub_type_id)));
+            allTransactions.add(new FinanceTransaction(amount,transactionSubtypeID,userId,isIncome));
+        }
+        result.close();
+        return allTransactions;
+
     }
 
     class SQLiteHelper extends SQLiteOpenHelper {

@@ -29,7 +29,8 @@
             android:parentActivityName=".ActionChooserActivity" />
         <activity
             android:name=".TransactionSubTypeAdd"
-            android:parentActivityName=".ActionChooserActivity"></activity>
+            android:parentActivityName=".ActionChooserActivity" />
+        <activity android:name=".ViewTransactionActivity"></activity>
     </application>
 
 </manifest>

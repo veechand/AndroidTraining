@@ -3,6 +3,10 @@ package com.veechand.financeapp.db;
 /**
  * Created by vsubrama on 12/25/15.
  */
+/*
+ * TODO(veechand) Need to add date to the transaction
+ * Need a transaction description
+ */
 public class FinanceTransaction {
 
     private String amount;
