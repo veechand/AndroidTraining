@@ -122,7 +122,8 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
 
 /*
 TODO:
-  1. Showing transaction on recycler card view
+  1. Adding date to the transaction
+  2. Everything is activityOnCreate now which should not be the case
   2. Changing the view. Always show the transaction and the master detail view to select action
   2. Add user to the sub transaction type table
   4. Register User and add it to DB
