@@ -30,7 +30,7 @@
         <activity
             android:name=".TransactionSubTypeAdd"
             android:parentActivityName=".ActionChooserActivity" />
-        <activity android:name=".ViewTransactionActivity" android:parentActivityName=".ActionChooserActivity"></activity>
+        <!--<activity android:name=".ViewTransactionFragment" android:parentActivityName=".ActionChooserActivity"></activity>-->
     </application>
 
 </manifest>

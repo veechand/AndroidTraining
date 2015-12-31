@@ -40,4 +40,13 @@
     <string name="error_sub_type_add_success">Added new transaction subtype</string>
     <string name="transaction_subtype_add">Add</string>
 
+    <string-array name="actions">
+        <item>Add Transaction</item>
+        <item>View Transaction</item>
+        <item>Add Transaction Type</item>
+    </string-array>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
 </resources>
