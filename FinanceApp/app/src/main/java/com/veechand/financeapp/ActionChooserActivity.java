@@ -17,10 +17,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ActionChooserActivity extends AppCompatActivity implements View.OnClickListener {
+public class ActionChooserActivity extends AppCompatActivity  {
 
-    private Button viewTransaction;
-    private Button addTransaction;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -32,13 +30,6 @@ public class ActionChooserActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_action_chooser);
 
-        /*
-        viewTransaction = (Button) findViewById(R.id.viewTransactionButton);
-        addTransaction = (Button) findViewById(R.id.addTransactionButton);
-
-        viewTransaction.setOnClickListener(this);
-        addTransaction.setOnClickListener(this);
-        */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -114,42 +105,12 @@ public class ActionChooserActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    @Override
-    public void onClick(View v) {
-        /*switch (v.getId()){
-            case R.id.viewTransactionButton:
-                Intent viewTransaction = new Intent(ActionChooserActivity.this,ViewTransactionFragment.class);
-                startActivity(viewTransaction);
-                break;
-            case R.id.addTransactionButton:
-                Intent addTransactionIntent = new Intent(ActionChooserActivity.this,AddTransactionActivity.class);
-                startActivity(addTransactionIntent);
-                break;
-        }*/
-    }
-
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //TODO: Check do we need to show this on all the toolbar
-      //  getMenuInflater().inflate(R.menu.menu_main,menu);
-        return true;
-    }
-*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        /*switch (item.getItemId()){
-            case R.id.menu_transaction_subtype_add:
-                Intent intent = new Intent(ActionChooserActivity.this, TransactionSubTypeAdd.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }*/
         return super.onOptionsItemSelected(item);
     }
 
