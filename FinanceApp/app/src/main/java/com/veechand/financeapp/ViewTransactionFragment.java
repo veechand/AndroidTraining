@@ -48,18 +48,5 @@ public class ViewTransactionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    /*    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_transaction);
-        this.transactionRecyclerView = (RecyclerView) findViewById(R.id.transaction_recycler_view);
-        transactionRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        transactionRecyclerView.setLayoutManager(mLayoutManager);
-        this.dbHelper = new DBHelper(ViewTransactionFragment.this);
-        List myDataset = dbHelper.getAllTransactions();
-        mAdapter = new TransactionAdapter(myDataset);
-        transactionRecyclerView.setAdapter(mAdapter);
-    }*/
 
 }

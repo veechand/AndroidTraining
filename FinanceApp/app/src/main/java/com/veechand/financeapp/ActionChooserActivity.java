@@ -70,6 +70,7 @@ public class ActionChooserActivity extends AppCompatActivity implements View.OnC
                 break;
             case 2:
                 Log.i("Cases","Case 2");
+                fragment = new TransactionSubTypeAdd();
                 break;
         }
 
@@ -127,27 +128,30 @@ public class ActionChooserActivity extends AppCompatActivity implements View.OnC
         }*/
     }
 
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //TODO: Check do we need to show this on all the toolbar
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+      //  getMenuInflater().inflate(R.menu.menu_main,menu);
         return true;
     }
+*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        switch (item.getItemId()){
+        /*switch (item.getItemId()){
             case R.id.menu_transaction_subtype_add:
                 Intent intent = new Intent(ActionChooserActivity.this, TransactionSubTypeAdd.class);
                 startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
-   }
+        }*/
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }
