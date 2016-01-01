@@ -55,6 +55,29 @@ public class DBHelper  {
         return resultCursor;
     }
 
+    public long getTotalTransactionAmount(int isIncome){
+        SQLiteDatabase rDb = sqlHelper.getReadableDatabase();
+        String tableName = context.getResources().getString(R.string.finance_transaction_table_name);
+        String col_amount = context.getResources().getString(R.string.finance_transaction_col_amount);
+
+        String selection;
+
+        if (isIncome != -1) {
+            selection = context.getResources().getString(R.string.sub_type_col_is_income) + "=" + String.valueOf(isIncome);
+        } else {
+            selection = null;
+        }
+        String groupBy = context.getResources().getString(R.string.sub_type_col_is_income);
+        String query = "select sum("+col_amount+") as "+ col_amount + " from "+ tableName + " where "+ selection + " group by " + groupBy;
+        Log.i(logTag,query);
+        Cursor resultCursor = rDb.rawQuery(query,null);
+        long totalAmount = 0;
+        if  ( resultCursor != null && resultCursor.moveToFirst()  ){
+            totalAmount = resultCursor.getLong(resultCursor.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_amount)));
+        }
+        return totalAmount;
+    }
+
     public long insertNewTransaction(FinanceTransaction financeTransaction){
         SQLiteDatabase wDb = sqlHelper.getWritableDatabase();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -66,6 +89,9 @@ public class DBHelper  {
         cv.put(context.getResources().getString(R.string.finance_transaction_col_user_id),financeTransaction.getUserId());
         cv.put(context.getResources().getString(R.string.finance_transaction_col_sub_type_id),financeTransaction.getTransactionSubTypeId());
         cv.put(context.getResources().getString(R.string.finance_transaction_col_amount), financeTransaction.getAmount());
+        cv.put(context.getResources().getString(R.string.finance_transaction_col_year), financeTransaction.getYear());
+        cv.put(context.getResources().getString(R.string.finance_transaction_col_date), financeTransaction.getDate());
+        cv.put(context.getResources().getString(R.string.finance_transaction_col_month), financeTransaction.getMonth());
         long result = wDb.insert(tableName, null, cv);
         wDb.close();
         return result;
@@ -130,7 +156,11 @@ public class DBHelper  {
             int isIncome = result.getInt(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_is_income)));
             long userId = result.getLong(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_user_id)));
             long transactionSubtypeID = result.getLong(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_sub_type_id)));
-            FinanceTransaction financeTransaction = new FinanceTransaction(amount, transactionSubtypeID, userId, isIncome);
+            int month = result.getInt(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_month)));
+            int year = result.getInt(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_year)));
+            int date = result.getInt(result.getColumnIndex(context.getResources().getString(R.string.finance_transaction_col_date)));
+
+            FinanceTransaction financeTransaction = new FinanceTransaction(amount, transactionSubtypeID, userId, isIncome,year,month,date);
             financeTransaction.setTransactionSubType(subTypeMapping.get((int)transactionSubtypeID));
             allTransactions.add(financeTransaction);
         }
@@ -170,6 +200,7 @@ public class DBHelper  {
             db.execSQL("create table sub_type (_id INTEGER PRIMARY KEY AUTOINCREMENT, sub_type_name VARCHAR2(256), is_income INTEGER);");
             String financeTransaction = "create table finance_transaction (_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "is_income INTEGER, sub_type_id INTEGER, user_id INTEGER, amount INTEGER,"
+                    + "year INTEGER, month INTEGER, cdate INTEGER,"
                     + "FOREIGN KEY(sub_type_id) REFERENCES sub_type(_id),"
                     + "FOREIGN KEY(user_id) REFERENCES user(_id))";
             db.execSQL(financeTransaction);

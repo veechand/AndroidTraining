@@ -8,14 +8,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class ActionChooserActivity extends AppCompatActivity  {
 
@@ -54,6 +51,7 @@ public class ActionChooserActivity extends AppCompatActivity  {
         switch (position) {
             case 0:
                 Log.i("Cases ","Case 0");
+                fragment = new AddTransactionFragment();
                 break;
             case 1:
                 Log.i("Cases","Case 1");

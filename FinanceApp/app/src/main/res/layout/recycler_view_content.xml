@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -8,7 +8,7 @@
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
         card_view:cardCornerRadius="4dp">
 
@@ -25,10 +25,22 @@
         <TextView
             android:id="@+id/transactionAmountTextView"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:layout_gravity="right|top"
             android:layout_margin="10dp"
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/transactionDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/card_view"
+            android:layout_gravity="start|bottom"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </android.support.v7.widget.CardView>
-</LinearLayout>
+</RelativeLayout>

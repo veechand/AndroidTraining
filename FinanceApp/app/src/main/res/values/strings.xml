@@ -32,6 +32,9 @@
     <string name="finance_transaction_col_user_id">user_id</string>
     <string name="finance_transaction_col_sub_type_id">sub_type_id</string>
     <string name="finance_transaction_col_amount">amount</string>
+    <string name="finance_transaction_col_year">year</string>
+    <string name="finance_transaction_col_month">month</string>
+    <string name="finance_transaction_col_date">cdate</string>
     <string name="finance_transaction_update_successful">Transaction updated succesfully !!</string>
     <string name="finance_transaction_update_failed">Error in updating the transaction :(</string>
     <string name="error_sub_type_not_found">Selected sub type not valid</string>
@@ -48,5 +51,8 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="from_date">Pick a from date</string>
+    <string name="to_date">Pick to date</string>
+    <string name="on_date">On Date</string>
 
 </resources>

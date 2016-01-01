@@ -25,10 +25,12 @@ class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter.Transa
     static class TransactionViewHolder extends RecyclerView.ViewHolder {
         TextView amountDescription ;
         TextView amount;
+        TextView dateTextView;
         public TransactionViewHolder(View itemView) {
             super(itemView);
             this.amount = (TextView) itemView.findViewById(R.id.transactionAmountTextView);
             this.amountDescription = (TextView) itemView.findViewById(R.id.transactionDescTextView);
+            this.dateTextView = (TextView) itemView.findViewById(R.id.transactionDateTextView);
         }
 
     }
@@ -51,6 +53,7 @@ class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter.Transa
         FinanceTransaction financeTransaction = (FinanceTransaction) myDataset.get(position);
         int isIncome = financeTransaction.getIsIncome();
         holder.amountDescription.setText(financeTransaction.getTransactionSubType());
+        holder.dateTextView.setText(financeTransaction.getcDate());
         if (isIncome == this.isIncome) {
             holder.amountDescription.setTextColor(Color.GREEN);
         } else {
